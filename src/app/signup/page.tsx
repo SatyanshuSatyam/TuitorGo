@@ -3,8 +3,9 @@
 import {Footer} from '@/components/layout/footer';
 import {Header} from '@/components/layout/header';
 import {useSearchParams} from 'next/navigation';
+import {Suspense} from 'react';
 
-export default function SignupPage() {
+function SignupContent() {
   const searchParams = useSearchParams();
   const role = searchParams.get('role');
 
@@ -28,5 +29,13 @@ export default function SignupPage() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SignupContent />
+    </Suspense>
   );
 }
